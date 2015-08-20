@@ -3,6 +3,124 @@ HOST: http://polls.apiblueprint.org/
 
 # Data API V2
 
+Describes all existed Data API v2 resources grouped by content types with response examples.
+
+# Brands endpoints
+
+## Brands list [/contents/v2/brands?apiKey={apiKey}]
+
+Get list of the all supported brands
+
++ Parameters
+    + apiKey (string, required) - apiKey
+    
+
+### Get the list of brands [GET]
+
++ Response 200 (application/json)
+
+        {
+            "brands":[
+                {
+            "id":"cc",
+            "name":"Comedy Central",
+            "platforms":[
+            {
+               "name":"web",
+               "link":"http://www.cc.com?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e"
+            },
+            {
+               "name":"ios",
+               "link":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8"
+            },
+            {
+               "name":"android",
+               "link":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral"
+            }
+        ...
+        },
+            {
+                "id":"nick",
+                "name":"Nickelodeon",
+
+            }
+          ]
+        }
+
++ Response 404 
+
++ Response 500
+
+## Details of brand [/contents/v2/brands/{brandId}?apiKey={apiKey}]
+
+Get Brand details by brand ID
+
++ Parameters
+    + apiKey (string, required) - apiKey
+    + brandId: cc (string, required) -brand ID
+    
+
+### Get brand details [GET]
+
++ Response 200 (application/json)
+
+        {
+        "brands":[
+            {
+         "id":"cc",
+         "name":"Comedy Central",
+         "platforms":[
+            {
+               "name":"web",
+               "link":"http://www.cc.com?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e"
+            },
+            {
+               "name":"ios",
+               "link":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8"
+            },
+            {
+               "name":"android",
+               "link":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral"
+            }
+         ],
+         "logos":[
+            {
+               "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:egvrenditions:/logos/comedycentral.com/CC_2011-1-line.png",
+               "usage":"default"
+            },
+            {
+               "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:egvrenditions:/logos/comedycentral.com/CC_2011-1-line.jpg"
+            },
+            {
+               "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:egvrenditions:/logos/comedycentral.com/CC_2011-2-line.png"
+            },
+            {
+               "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:egvrenditions:/logos/comedycentral.com/CC_2011-2-line.jpg"
+            },
+            {
+               "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:egvrenditions:/logos/comedycentral.com/cc_app.jpg",
+               "usage":"applogo"
+            }
+         ],
+         "links":[
+            {
+               "rel":"shows",
+               "href":"https://api.viacom.com/contents/v2/brands/cc/shows"
+            },
+            {
+               "rel":"episodes",
+               "href":"https://api.viacom.com/contents/v2/brands/cc/episodes"
+            }
+           ]
+          }
+          ]
+         }
+
++ Response 404 
+
++ Response 500
+
+
 ## Episodes by Show & Season for a Brand [/contents/v2/brands/{brandId}/shows/{showId}/seasons/{seasonId}/episodes?apiKey={apiKey}&offset={offset}&limit={limit}]
 
 Get Episodes by Show ID and Season ID for a Brand
