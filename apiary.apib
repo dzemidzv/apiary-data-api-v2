@@ -1,11 +1,9 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http:/api.viacom.com/
 
 # Data API V2
 
 Describes all existed Data API v2 resources grouped by content types with response examples.
-
-# Brands endpoints
 
 ## Brands list [/contents/v2/brands?apiKey={apiKey}]
 
@@ -119,6 +117,805 @@ Get Brand details by brand ID
 + Response 404 
 
 + Response 500
+
+
+## Delta Shows By Brand [/contents/v2/brands/{brandId}/shows/delta?apiKey={apiKey}&date={date}&offset={offset}&limit={limit}]
+
+Get Shows by Brand from a specific timeframe
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    + date: 2015-05-17 (date, required) - date
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Delta Show by Brand [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+            "shows":[
+              {
+                "mgid":"mgid:arc:series:comedycentral.com:cee4bc8f-d114-4cad-803e-fa93959911ef",
+                "id":"cee4bc8f-d114-4cad-803e-fa93959911ef",
+                "title":"Bridget Everett: Gynecological Wonder",
+                "ratingType":"TVPG",
+                "rating":"TV-MA",
+                "episodeCount":0,
+                "seasonCount":1,
+                "genre":"comedy",
+                "images":[
+                  {
+                    "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/bridget_everett_gynecological_wonder/Everett_Gynecological_Wonder_HUB_APP_1280x1280.jpg?host=comedycentral",
+                    "aspectRatio":"1:1"
+                  }
+                ],
+                "platforms":[
+                 {
+                   "platform":"ios",
+                   "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
+                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-07-12T06:00:00Z",
+                   "endDate":"2015-08-10T06:00:00Z"
+                 },
+                 {
+                   "platform":"android",
+                   "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
+                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-07-12T06:00:00Z",
+                   "endDate":"2015-08-10T06:00:00Z"
+                 }
+                ],
+                "links":[
+                  {
+                    "rel":"seasons",
+                    "href":"https://api.viacom.com/contents/v2/shows/cee4bc8f-d114-4cad-803e-fa93959911ef/seasons"
+                  },
+                  {
+                    "rel":"brand",
+                    "href":"https://api.viacom.com/contents/v2/brands/cc"
+                  }
+                ],
+                "brand":{
+                  "id":"cc",
+                  "name":"comedy central",
+                  "url":"http://www.cc.com"
+                }
+              }
+         ]
+        }
+        
++ Response 500
+
++ Response 404
+
+
+## Shows list by Brand ID [/contents/v2/brands/{brandId}/shows?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+List all shows:
+
++ Parameters
+    + apiKey (string, required) - API Key
+    + brandId: cc (string, required) - brand ID
+    + offset: `0` (number, optional) - index into collection to start for this request 
+        + Default: `0`
+    + limit: `20` (number, optional) - max number of items to return for this call
+        + Default: `20`
+        
+
+### Get a list of shows by Brand [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+            "series":[
+         {
+            "mgid":"mgid:arc:series:comedycentral.com:279759a2-ecfd-11e0-aca6-0026b9414f30",
+            "id":"279759a2-ecfd-11e0-aca6-0026b9414f30",
+            "title":"RENO 911!",
+            "description":"The brave men and women of the Washoe County Sheriff's Department give you the 411 on the thin khaki line that keeps Reno, Nevada on the straight and narrow. Led by Lt. Jim Dangle, the officers of RENO 911! attempt to keep the streets safe -- mainly from themselves.",
+            "ratingType":"TVPG",
+            "rating":"TV-14",
+            "episodeCount":0,
+            "seasonCount":6,
+            "genre":"comedy",
+            "images":[
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/TVE_Hub_ShowImage_Reno911.jpg?host=comedycentral",
+                  "aspectRatio":"1:1"
+               }
+            ],
+            "platforms":[
+               {
+                  "platform":"web",
+                  "contentLink":"http://www.cc.com/shows/reno-911-?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"ios",
+                  "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "contentLink":"ccnetworkapp://series/279759a2-ecfd-11e0-aca6-0026b9414f30?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"android",
+                  "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "contentLink":"ccnetworkapp://series/279759a2-ecfd-11e0-aca6-0026b9414f30?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"roku",
+                  "contentLink":"entity=series&mgid=mgid:arc:series:comedycentral.com:279759a2-ecfd-11e0-aca6-0026b9414f30&autoplay=false&xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               }
+            ],
+            "links":[
+               {
+                  "rel":"seasons",
+                  "href":"https://api.viacom.com/contents/v2/shows/279759a2-ecfd-11e0-aca6-0026b9414f30/seasons"
+               },
+               {
+                  "rel":"brand",
+                  "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+            ],
+            "brand":{
+               "id":"cc",
+               "name":"comedy central",
+               "url":"http://www.cc.com"
+            }
+            }
+           ]
+          }
+          
+## Random Shows [/contents/v2/brands/{brandId}/shows/random_shows?apiKey={apiKey}]
+
+Get random shows for a brand
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    
+
+
+### Get random shows for a brand [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+              "episodes":[
+                {
+                  "mgid":"mgid:arc:episode:comedycentral.com:017a911c-9635-435d-a5ff-f6052945fc71",
+                  "id":"017a911c-9635-435d-a5ff-f6052945fc71",
+                  "title":"The One Where Hannibal Looks Like \"Miami Vice\"",
+                  "episodeNumber":"205",
+                  "description":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
+                  "shortDescription":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
+                  "ratingType":"TVPG",
+                  "rating":"TV-MA",
+                  "duration":1245,
+                  "genre":"comedy",
+                  "originalAirDate":"2015-08-18T00:30:00Z",
+                  "franchise":{
+                    "id":"d4a893db-9ede-4fd7-84c8-5e314297b13b",
+                    "title":"CC:Stand-Up"
+                  },
+                  "images":[
+                    {
+                      "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/meltdown/season_02/205/meltdown_02_005_hannibal_01.jpg?host=comedycentral",
+                      "aspectRatio":"16:9"
+                    }
+                  ],
+                  "season":{
+                    "id":"981fe217-a8b6-4782-a746-c4d411b60428",
+                    "seasonNumber":"2",
+                    "title":"2: The Meltdown with Jonah and Kumail"
+                  },
+                  "show":{
+                    "id":"2345e03e-2bfc-45e1-979b-2c30bc439044",
+                    "title":"The Meltdown with Jonah and Kumail"
+                  },
+                  "platforms":[
+                    {
+                      "platform":"ios",
+                      "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
+                      "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                      "authRequired":"true",
+                      "startDate":"2015-08-05T00:00:00Z",
+                      "endDate":"2015-11-16T06:00:00Z"
+                    },
+                    {
+                      "platform":"android",
+                      "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
+                      "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                      "authRequired":"true",
+                      "startDate":"2015-08-05T00:00:00Z",
+                      "endDate":"2015-11-16T06:00:00Z"
+                    }
+                  ],
+                  "links":[
+                    {
+                      "rel":"show",
+                      "href":"https://api.viacom.com/contents/v2/shows/2345e03e-2bfc-45e1-979b-2c30bc439044"
+                    },
+                    {    
+                      "rel":"brand",
+                      "href":"https://api.viacom.com/contents/v2/brands/cc"
+                    }
+                  ],
+                  "brand":{
+                     "id":"cc",
+                     "name":"comedy central",
+                     "url":"http://www.cc.com"
+                  }
+                }
+              ]
+            }
+        }
+        
++ Response 500
+
++ Response 404
+
+## Search by Shows for a Brand [/contents/v2/brands/{brandId}/shows/search?apiKey={apiKey}&key={key}&offset={offset}&limit={limit}]
+
+Perform search in Shows title by some key value and return list of shows.
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + key: a (string, required) - key value which is used for search
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+
+### Search by Shows [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "series":[
+                    {
+                        "mgid":"mgid:arc:series:comedycentral.com:21edc17d-eb12-4400-adcb-7d00d6c69d10",
+                        "id":"21edc17d-eb12-4400-adcb-7d00d6c69d10",
+                        "title":"Questionable Science",
+                        "description":"Join Professor Rich and his Unfocus Group as they brainstorm, hit the streets and interview leading experts to find the answers to some of life's dumbest hypothetical questions.",
+                        "ratingType":"TVPG",
+                        "rating":"TV-MA",
+                        "episodeCount":0,
+                        "seasonCount":1,
+                        "genre":"comedy",
+                        "franchise":{
+                            "id":"ad5a6411-c39e-498d-a60b-cd6d78beaebd",
+                            "title":"Not For TV"
+                        },
+                        "images":[
+                        {
+                            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/questionable_science/qs_hub_1280x1280.jpg?host=comedycentral",
+                            "aspectRatio":"1:1"
+                        }
+                    ],
+                    "platforms":[
+                        {
+                            "platform":"ios",
+                            "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "contentLink":"ccnetworkapp://series/21edc17d-eb12-4400-adcb-7d00d6c69d10?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"false",
+                            "startDate":"2015-03-23T10:58:00Z",
+                            "endDate":"9999-12-30T19:00:00Z"
+                        },
+                        {
+                            "platform":"android",
+                            "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "contentLink":"ccnetworkapp://series/21edc17d-eb12-4400-adcb-7d00d6c69d10?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"false",
+                            "startDate":"2015-03-23T10:58:00Z",
+                            "endDate":"9999-12-30T19:00:00Z"
+                        },
+                        {
+                            "platform":"roku",
+                            "contentLink":"entity=series&mgid=mgid:arc:series:comedycentral.com:21edc17d-eb12-4400-adcb-7d00d6c69d10&autoplay=false&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"false",
+                            "startDate":"2015-03-23T10:58:00Z",
+                            "endDate":"9999-12-30T19:00:00Z"
+                        }
+                    ],
+                    "links":[
+                        {
+                            "rel":"seasons",
+                            "href":"https://api.viacom.com/contents/shows/21edc17d-eb12-4400-adcb-7d00d6c69d10/seasons"
+                        },
+                        {
+                             "rel":"brand",
+                            "href":"https://api.viacom.com/contents/brands/cc"
+                        }        
+                    ],
+                    "brand":{
+                      "id":"cc",
+                      "name":"comedy central",
+                      "url":"http://www.cc.com"
+                    }
+                }
+              ]
+          }
+
+## Featured Shows for a Brand [/contents/v2/brands/{brandId}/shows/featured?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+Returns List of featured shows for a brand.
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+
+### Get featured shows by Brand ID [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "series":[
+                {
+            "mgid":"mgid:arc:series:comedycentral.com:d4581379-0309-4d46-878c-f2a204ed0253",
+            "id":"d4581379-0309-4d46-878c-f2a204ed0253",
+            "title":"Kroll Show",
+            "description":"With unforgettable recurring characters like Bobby Bottleservice, the PubLIZity Girls, Ref Jeff, C-Czar and more, Kroll Show skewers our television-obsessed culture and the rabid fan base it breeds. More than just a collection of sketches, it's Nick Kroll's one-of-a-kind take on pop culture and the meaning of celebrity.",
+            "ratingType":"TV-PG",
+            "rating":"TV-14",
+            "episodeCount":1,
+            "seasonCount":3,
+            "genre":"comedy",
+            "images":[
+               {
+                  "url":"http://1.images.comedycentral.com/images/tve/_river_branded_tiles/1080x720__KROLL_OHHELLO.png",
+                  "type":"png",
+                  "aspectRatio":"3:2"
+               },
+               {
+                  "url":"http://2.images.comedycentral.com/images/tve/_river_branded_tiles/1280x640__KROLL_OHHELLO.png",
+                  "type":"png",
+                  "aspectRatio":"2:1"
+               },
+               {
+                  "url":"http://4.images.comedycentral.com/images/tve/_river_branded_tiles/1280x720__KROLL_OHHELLO.png",
+                  "type":"png",
+                  "aspectRatio":"16:9"
+               },
+               {
+                  "url":"http://2.images.comedycentral.com/images/tve/_river_branded_tiles/1280x1280__KROLL_OHHELLO_v1.png",
+                  "type":"png",
+                  "aspectRatio":"1:1"
+               },
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/kroll_show/tve_series_page/TVE_Hub_ShowImage_Kroll_Final_Season.jpg?host=comedycentral",
+                  "aspectRatio":"1:1"
+               },
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/kroll_show/cc_tvsched_showheader_kroll.png?host=comedycentral"
+               }
+            ],
+            "platforms":[
+               {
+                  "platform":"ios",
+                  "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "contentLink":"ccnetworkapp://series/d4581379-0309-4d46-878c-f2a204ed0253?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"android",
+                  "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "contentLink":"ccnetworkapp://series/d4581379-0309-4d46-878c-f2a204ed0253?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               }
+            ],
+            "links":[
+               {
+                  "rel":"seasons",
+                  "href":"https://api.viacom.com/contents/v2/shows/d4581379-0309-4d46-878c-f2a204ed0253/seasons"
+               },
+               {
+                  "rel":"episodes",
+                  "href":"https://api.viacom.com/contents/v2/shows/d4581379-0309-4d46-878c-f2a204ed0253/episodes"
+               },
+               {
+                  "rel":"brand",
+                  "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+            ],
+            "brand":{
+               "id":"cc",
+               "name":"comedy central",
+               "url":"http://www.cc.com"
+            }
+         }
+        ]
+        }
+
+
++ Response 404
+
++ Response 500
+
+## Show by brand and ID [/contents/v2/brands/{brandId}/shows/{showId}?apiKey={apiKey}]
+
+Get Detail of a Show:
+
++ Parameters
+    + showId (string, required) - Show ID
+    + apiKey (string, required) - API Key
+    + brandId: cc (string, required) - brand ID
+    
+### Get detail of a Show by ID [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "mgid":"mgid:arc:series:comedycentral.com:c9be3b7d-ccea-4b54-a680-51de7bfa25f4",
+                "id":"c9be3b7d-ccea-4b54-a680-51de7bfa25f4",
+                "title":"Archer",
+                "description":"Archer is an animated spy thriller that follows Sterling Archer (H. Jon Benjamin) and his fellow operatives (voiced by talent including Chris Parnell, Aisha Tyler and Jessica Walter) as they engage in undercover surveillance, pursue dangerous missions and quibble about office politics. They're out to make the world a better place -- or a worse place, depending on which pays better.",
+                "ratingType":"TVPG",
+                "rating":"TV-MA",
+                "episodeCount":13,
+                "seasonCount":5,
+                "genre":"comedy",
+                "images":[
+         {
+            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/archer/homepage/massives/ARCHER_centered01_massive_1920x540.jpg?host=comedycentral"
+         },
+         {
+            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/archer/tve_series_page/ARCHER_3Characters_Hub_APP_1280x1280.jpg?host=comedycentral",
+            "aspectRatio":"1:1"
+         },
+         {
+            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/archer/homepage/cc_tvsched_showheader_archer.png?host=comedycentral"
+         }
+        ],
+        "platforms":[
+         {
+            "platform":"web",
+            "contentLink":"http://www.cc.com/shows/archer?xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         },
+         {
+            "platform":"ios",
+            "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "contentLink":"ccnetworkapp://series/c9be3b7d-ccea-4b54-a680-51de7bfa25f4?xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         },
+         {
+            "platform":"android",
+            "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "contentLink":"ccnetworkapp://series/c9be3b7d-ccea-4b54-a680-51de7bfa25f4?xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         },
+         {
+            "platform":"roku",
+            "contentLink":"entity=series&mgid=mgid:arc:series:comedycentral.com:c9be3b7d-ccea-4b54-a680-51de7bfa25f4&autoplay=false&xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         }
+            ],
+            "links":[
+         {
+            "rel":"seasons",
+            "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4/seasons"
+         },
+         {
+            "rel":"episodes",
+            "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4/episodes"
+         },
+         {
+            "rel":"brand",
+            "href":"https://api.viacom.com/contents/v2/brands/cc"
+         }
+            ],
+            "brand":{
+            "id":"cc",
+            "name":"comedy central",
+            "url":"http://www.cc.com"
+           }
+          }
+         }
+        
++ Response 404 
+
++ Response 500
+
+## Shows list [/contents/v2/shows?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+List all shows:
+
++ Parameters
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - index into collection to start for this request 
+        + Default: `0`
+    + limit: `20` (number, optional) - max number of items to return for this call
+        + Default: `20`
+        
+
+### Get a list of shows [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+            "series":[
+         {
+            "mgid":"mgid:arc:series:comedycentral.com:279759a2-ecfd-11e0-aca6-0026b9414f30",
+            "id":"279759a2-ecfd-11e0-aca6-0026b9414f30",
+            "title":"RENO 911!",
+            "description":"The brave men and women of the Washoe County Sheriff's Department give you the 411 on the thin khaki line that keeps Reno, Nevada on the straight and narrow. Led by Lt. Jim Dangle, the officers of RENO 911! attempt to keep the streets safe -- mainly from themselves.",
+            "ratingType":"TVPG",
+            "rating":"TV-14",
+            "episodeCount":0,
+            "seasonCount":6,
+            "genre":"comedy",
+            "images":[
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/TVE_Hub_ShowImage_Reno911.jpg?host=comedycentral",
+                  "aspectRatio":"1:1"
+               }
+            ],
+            "platforms":[
+               {
+                  "platform":"web",
+                  "contentLink":"http://www.cc.com/shows/reno-911-?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"ios",
+                  "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "contentLink":"ccnetworkapp://series/279759a2-ecfd-11e0-aca6-0026b9414f30?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"android",
+                  "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "contentLink":"ccnetworkapp://series/279759a2-ecfd-11e0-aca6-0026b9414f30?xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"roku",
+                  "contentLink":"entity=series&mgid=mgid:arc:series:comedycentral.com:279759a2-ecfd-11e0-aca6-0026b9414f30&autoplay=false&xrs=vdapi_00_072d8cf52e6d6b26e1e28df068d5c00e",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               }
+            ],
+            "links":[
+               {
+                  "rel":"seasons",
+                  "href":"https://api.viacom.com/contents/v2/shows/279759a2-ecfd-11e0-aca6-0026b9414f30/seasons"
+               },
+               {
+                  "rel":"brand",
+                  "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+            ],
+            "brand":{
+               "id":"cc",
+               "name":"comedy central",
+               "url":"http://www.cc.com"
+            }
+            }
+           ]
+          }
+          
+        
++ Response 500
+
++ Response 404
+
+## Show by ID [/contents/v2/shows/{showId}?apiKey={apiKey}]
+
+Get Detail of a Show:
+
++ Parameters
+    + showId (string, required) - Show ID
+    + apiKey (string, required) - API Key
+    
+### Get detail of a Show by ID [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "mgid":"mgid:arc:series:comedycentral.com:c9be3b7d-ccea-4b54-a680-51de7bfa25f4",
+                "id":"c9be3b7d-ccea-4b54-a680-51de7bfa25f4",
+                "title":"Archer",
+                "description":"Archer is an animated spy thriller that follows Sterling Archer (H. Jon Benjamin) and his fellow operatives (voiced by talent including Chris Parnell, Aisha Tyler and Jessica Walter) as they engage in undercover surveillance, pursue dangerous missions and quibble about office politics. They're out to make the world a better place -- or a worse place, depending on which pays better.",
+                "ratingType":"TVPG",
+                "rating":"TV-MA",
+                "episodeCount":13,
+                "seasonCount":5,
+                "genre":"comedy",
+                "images":[
+         {
+            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/archer/homepage/massives/ARCHER_centered01_massive_1920x540.jpg?host=comedycentral"
+         },
+         {
+            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/archer/tve_series_page/ARCHER_3Characters_Hub_APP_1280x1280.jpg?host=comedycentral",
+            "aspectRatio":"1:1"
+         },
+         {
+            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/archer/homepage/cc_tvsched_showheader_archer.png?host=comedycentral"
+         }
+        ],
+        "platforms":[
+         {
+            "platform":"web",
+            "contentLink":"http://www.cc.com/shows/archer?xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         },
+         {
+            "platform":"ios",
+            "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "contentLink":"ccnetworkapp://series/c9be3b7d-ccea-4b54-a680-51de7bfa25f4?xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         },
+         {
+            "platform":"android",
+            "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "contentLink":"ccnetworkapp://series/c9be3b7d-ccea-4b54-a680-51de7bfa25f4?xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         },
+         {
+            "platform":"roku",
+            "contentLink":"entity=series&mgid=mgid:arc:series:comedycentral.com:c9be3b7d-ccea-4b54-a680-51de7bfa25f4&autoplay=false&xrs=vdapi_04_d74777f9430b96973a75b528cd752551",
+            "authRequired":"false",
+            "startDate":"2015-03-23T10:58:00Z",
+            "endDate":"9999-12-30T19:00:00Z"
+         }
+            ],
+            "links":[
+         {
+            "rel":"seasons",
+            "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4/seasons"
+         },
+         {
+            "rel":"episodes",
+            "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4/episodes"
+         },
+         {
+            "rel":"brand",
+            "href":"https://api.viacom.com/contents/v2/brands/cc"
+         }
+            ],
+            "brand":{
+            "id":"cc",
+            "name":"comedy central",
+            "url":"http://www.cc.com"
+           }
+          }
+         }
+        
++ Response 404 
+
++ Response 500
+
+
+## Delta Shows [/contents/v2/shows/delta?apiKey={apiKey}&date={date}&offset={offset}&limit={limit}]
+
+Get Shows by Brand from a specific timeframe
+
++ Parameters
+    + apiKey (string, required) - API Key
+    + date: 2015-05-17 (date, required) - date
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Get delta Shows[GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+            "shows":[
+              {
+                "mgid":"mgid:arc:series:comedycentral.com:cee4bc8f-d114-4cad-803e-fa93959911ef",
+                "id":"cee4bc8f-d114-4cad-803e-fa93959911ef",
+                "title":"Bridget Everett: Gynecological Wonder",
+                "ratingType":"TVPG",
+                "rating":"TV-MA",
+                "episodeCount":0,
+                "seasonCount":1,
+                "genre":"comedy",
+                "images":[
+                  {
+                    "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/bridget_everett_gynecological_wonder/Everett_Gynecological_Wonder_HUB_APP_1280x1280.jpg?host=comedycentral",
+                    "aspectRatio":"1:1"
+                  }
+                ],
+                "platforms":[
+                 {
+                   "platform":"ios",
+                   "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
+                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-07-12T06:00:00Z",
+                   "endDate":"2015-08-10T06:00:00Z"
+                 },
+                 {
+                   "platform":"android",
+                   "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
+                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-07-12T06:00:00Z",
+                   "endDate":"2015-08-10T06:00:00Z"
+                 }
+                ],
+                "links":[
+                  {
+                    "rel":"seasons",
+                    "href":"https://api.viacom.com/contents/v2/shows/cee4bc8f-d114-4cad-803e-fa93959911ef/seasons"
+                  },
+                  {
+                    "rel":"brand",
+                    "href":"https://api.viacom.com/contents/v2/brands/cc"
+                  }
+                ],
+                "brand":{
+                  "id":"cc",
+                  "name":"comedy central",
+                  "url":"http://www.cc.com"
+                }
+              }
+         ]
+        }
+        
++ Response 500
+
++ Response 404
 
 
 ## Episodes by Show & Season for a Brand [/contents/v2/brands/{brandId}/shows/{showId}/seasons/{seasonId}/episodes?apiKey={apiKey}&offset={offset}&limit={limit}]
@@ -286,132 +1083,8 @@ Get Episodes by Season ID for a Brand
 
 + Response 500
 
-## Seasons by Show For a Brand [/contents/v2/brands/{brandId}/shows/{showId}/seasons?apiKey={apiKey}&offset={offset}&limit={limit}]
 
-Get Seasons by Show Id for a Brand
 
-+ Parameters
-    + brandId: cc (string, required) - brand ID
-    + showId (string, required) - show ID
-    + apiKey (string, required) - apiKey
-    + offset: `0` (number, optional) - offset into collection to start
-        + Default: `0`
-    + limit: `20` (number, optional) - max number to return for each request
-        + Default: `20`
-    
-
-### Get Seasons by Show Id [GET]
-
-+ Response 200 (application/json)
-
-        {
-        "response":{
-            "seasons":[
-                {
-                    "mgid":"mgid:arc:season:comedycentral.com:6c373b56-966a-40d4-8837-9e865fa669f3",
-                    "id":"6c373b56-966a-40d4-8837-9e865fa669f3",
-                    "title":"5: Archer",
-                    "ratingType":"TVPG",
-                    "rating":"TV-MA",
-                    "seasonNumber":"5",
-                    "showTitle":"Archer",
-                    "links":[
-               {
-                    "rel":"show",
-                    "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4"
-               },
-               {
-                    "rel":"episodes",
-                    "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4/seasons/6c373b56-966a-40d4-8837-9e865fa669f3/episodes"
-               },
-               {
-                    "rel":"brand",
-                    "href":"https://api.viacom.com/contents/v2/brands/cc"
-               }
-            ]
-        }
-        }
-
-+ Response 500
-
-+ Response 404
-
-## Delta Shows By Brand [/contents/v2/brands/{brandId}/shows/delta?apiKey={apiKey}&date={date}&offset={offset}&limit={limit}]
-
-Get Shows by Brand from a specific timeframe
-
-+ Parameters
-    + brandId (string, required) - brand ID
-    + apiKey (string, required) - API Key
-    + date: 2015-05-17 (date, required) - date
-    + offset: `0` (number, optional) - offset into collection to start
-        + Default: `0`
-    + limit: `20` (number, optional) - max number to return for each request
-        + Default: `20`
-    
-
-### Delta Show by Brand [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "response":{
-            "shows":[
-              {
-                "mgid":"mgid:arc:series:comedycentral.com:cee4bc8f-d114-4cad-803e-fa93959911ef",
-                "id":"cee4bc8f-d114-4cad-803e-fa93959911ef",
-                "title":"Bridget Everett: Gynecological Wonder",
-                "ratingType":"TVPG",
-                "rating":"TV-MA",
-                "episodeCount":0,
-                "seasonCount":1,
-                "genre":"comedy",
-                "images":[
-                  {
-                    "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/bridget_everett_gynecological_wonder/Everett_Gynecological_Wonder_HUB_APP_1280x1280.jpg?host=comedycentral",
-                    "aspectRatio":"1:1"
-                  }
-                ],
-                "platforms":[
-                 {
-                   "platform":"ios",
-                   "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
-                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
-                   "authRequired":"true",
-                   "startDate":"2015-07-12T06:00:00Z",
-                   "endDate":"2015-08-10T06:00:00Z"
-                 },
-                 {
-                   "platform":"android",
-                   "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
-                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
-                   "authRequired":"true",
-                   "startDate":"2015-07-12T06:00:00Z",
-                   "endDate":"2015-08-10T06:00:00Z"
-                 }
-                ],
-                "links":[
-                  {
-                    "rel":"seasons",
-                    "href":"https://api.viacom.com/contents/v2/shows/cee4bc8f-d114-4cad-803e-fa93959911ef/seasons"
-                  },
-                  {
-                    "rel":"brand",
-                    "href":"https://api.viacom.com/contents/v2/brands/cc"
-                  }
-                ],
-                "brand":{
-                  "id":"cc",
-                  "name":"comedy central",
-                  "url":"http://www.cc.com"
-                }
-              }
-         ]
-        }
-        
-+ Response 500
-
-+ Response 404
 
 ## Delta Episodes By Brand [/contents/v2/brands/{brandId}/episodes/delta?apiKey={apiKey}&date={date}&offset={offset}&limit={limit}]
 
@@ -506,179 +1179,7 @@ Get Episodes by Brand from a specific timeframe
 
 + Response 404
 
-## Random Shows [/contents/v2/brands/{brandId}/shows/random_shows?apiKey={apiKey}]
 
-Get random shows for a brand
-
-+ Parameters
-    + brandId (string, required) - brand ID
-    + apiKey (string, required) - API Key
-    
-    
-
-### Get random shows for a brand [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "response":{
-              "episodes":[
-                {
-                  "mgid":"mgid:arc:episode:comedycentral.com:017a911c-9635-435d-a5ff-f6052945fc71",
-                  "id":"017a911c-9635-435d-a5ff-f6052945fc71",
-                  "title":"The One Where Hannibal Looks Like \"Miami Vice\"",
-                  "episodeNumber":"205",
-                  "description":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
-                  "shortDescription":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
-                  "ratingType":"TVPG",
-                  "rating":"TV-MA",
-                  "duration":1245,
-                  "genre":"comedy",
-                  "originalAirDate":"2015-08-18T00:30:00Z",
-                  "franchise":{
-                    "id":"d4a893db-9ede-4fd7-84c8-5e314297b13b",
-                    "title":"CC:Stand-Up"
-                  },
-                  "images":[
-                    {
-                      "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/meltdown/season_02/205/meltdown_02_005_hannibal_01.jpg?host=comedycentral",
-                      "aspectRatio":"16:9"
-                    }
-                  ],
-                  "season":{
-                    "id":"981fe217-a8b6-4782-a746-c4d411b60428",
-                    "seasonNumber":"2",
-                    "title":"2: The Meltdown with Jonah and Kumail"
-                  },
-                  "show":{
-                    "id":"2345e03e-2bfc-45e1-979b-2c30bc439044",
-                    "title":"The Meltdown with Jonah and Kumail"
-                  },
-                  "platforms":[
-                    {
-                      "platform":"ios",
-                      "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
-                      "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
-                      "authRequired":"true",
-                      "startDate":"2015-08-05T00:00:00Z",
-                      "endDate":"2015-11-16T06:00:00Z"
-                    },
-                    {
-                      "platform":"android",
-                      "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
-                      "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
-                      "authRequired":"true",
-                      "startDate":"2015-08-05T00:00:00Z",
-                      "endDate":"2015-11-16T06:00:00Z"
-                    }
-                  ],
-                  "links":[
-                    {
-                      "rel":"show",
-                      "href":"https://api.viacom.com/contents/v2/shows/2345e03e-2bfc-45e1-979b-2c30bc439044"
-                    },
-                    {    
-                      "rel":"brand",
-                      "href":"https://api.viacom.com/contents/v2/brands/cc"
-                    }
-                  ],
-                  "brand":{
-                     "id":"cc",
-                     "name":"comedy central",
-                     "url":"http://www.cc.com"
-                  }
-                }
-              ]
-            }
-        }
-        
-+ Response 500
-
-+ Response 404
-
-## Search by Shows for a Brand [/contents/v2/brands/{brandId}/shows/search?apiKey={apiKey}&key={key}&offset={offset}&limit={limit}]
-
-Perform search in Shows title by some key value and return list of shows.
-
-+ Parameters
-    + brandId (string, required) - brand ID
-    + key: a (string, required) - key value which is used for search
-    + apiKey (string, required) - API Key
-    + offset: `0` (number, optional) - offset into collection to start
-        + Default: `0`
-    + limit: `20` (number, optional) - max number to return for each request
-        + Default: `20`
-
-### Search by Shows [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "response":{
-                "series":[
-                    {
-                        "mgid":"mgid:arc:series:comedycentral.com:21edc17d-eb12-4400-adcb-7d00d6c69d10",
-                        "id":"21edc17d-eb12-4400-adcb-7d00d6c69d10",
-                        "title":"Questionable Science",
-                        "description":"Join Professor Rich and his Unfocus Group as they brainstorm, hit the streets and interview leading experts to find the answers to some of life's dumbest hypothetical questions.",
-                        "ratingType":"TVPG",
-                        "rating":"TV-MA",
-                        "episodeCount":0,
-                        "seasonCount":1,
-                        "genre":"comedy",
-                        "franchise":{
-                            "id":"ad5a6411-c39e-498d-a60b-cd6d78beaebd",
-                            "title":"Not For TV"
-                        },
-                        "images":[
-                        {
-                            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/questionable_science/qs_hub_1280x1280.jpg?host=comedycentral",
-                            "aspectRatio":"1:1"
-                        }
-                    ],
-                    "platforms":[
-                        {
-                            "platform":"ios",
-                            "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                            "contentLink":"ccnetworkapp://series/21edc17d-eb12-4400-adcb-7d00d6c69d10?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                            "authRequired":"false",
-                            "startDate":"2015-03-23T10:58:00Z",
-                            "endDate":"9999-12-30T19:00:00Z"
-                        },
-                        {
-                            "platform":"android",
-                            "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                            "contentLink":"ccnetworkapp://series/21edc17d-eb12-4400-adcb-7d00d6c69d10?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                            "authRequired":"false",
-                            "startDate":"2015-03-23T10:58:00Z",
-                            "endDate":"9999-12-30T19:00:00Z"
-                        },
-                        {
-                            "platform":"roku",
-                            "contentLink":"entity=series&mgid=mgid:arc:series:comedycentral.com:21edc17d-eb12-4400-adcb-7d00d6c69d10&autoplay=false&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                            "authRequired":"false",
-                            "startDate":"2015-03-23T10:58:00Z",
-                            "endDate":"9999-12-30T19:00:00Z"
-                        }
-                    ],
-                    "links":[
-                        {
-                            "rel":"seasons",
-                            "href":"https://api.viacom.com/contents/shows/21edc17d-eb12-4400-adcb-7d00d6c69d10/seasons"
-                        },
-                        {
-                             "rel":"brand",
-                            "href":"https://api.viacom.com/contents/brands/cc"
-                        }        
-                    ],
-                    "brand":{
-                      "id":"cc",
-                      "name":"comedy central",
-                      "url":"http://www.cc.com"
-                    }
-                }
-              ]
-          }
           
 ## Search by Episodes for a Brand [/contents/v2/brands/{brandId}/episodes/search?apiKey={apiKey}&key={key}&offset={offset}&limit={limit}]
 
@@ -761,110 +1262,6 @@ Performs search in Episodes title by some key value and returns list of shows.
 
 + Response 500
 
-        
-## Featured Shows for a Brand [/contents/v2/brands/{brandId}/shows/featured?apiKey={apiKey}&offset={offset}&limit={limit}]
-
-Returns List of featured shows for a brand.
-
-+ Parameters
-    + brandId (string, required) - brand ID
-    + apiKey (string, required) - API Key
-    + offset: `0` (number, optional) - offset into collection to start
-        + Default: `0`
-    + limit: `20` (number, optional) - max number to return for each request
-        + Default: `20`
-
-### Get featured shows by Brand ID [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "response":{
-                "series":[
-                {
-            "mgid":"mgid:arc:series:comedycentral.com:d4581379-0309-4d46-878c-f2a204ed0253",
-            "id":"d4581379-0309-4d46-878c-f2a204ed0253",
-            "title":"Kroll Show",
-            "description":"With unforgettable recurring characters like Bobby Bottleservice, the PubLIZity Girls, Ref Jeff, C-Czar and more, Kroll Show skewers our television-obsessed culture and the rabid fan base it breeds. More than just a collection of sketches, it's Nick Kroll's one-of-a-kind take on pop culture and the meaning of celebrity.",
-            "ratingType":"TV-PG",
-            "rating":"TV-14",
-            "episodeCount":1,
-            "seasonCount":3,
-            "genre":"comedy",
-            "images":[
-               {
-                  "url":"http://1.images.comedycentral.com/images/tve/_river_branded_tiles/1080x720__KROLL_OHHELLO.png",
-                  "type":"png",
-                  "aspectRatio":"3:2"
-               },
-               {
-                  "url":"http://2.images.comedycentral.com/images/tve/_river_branded_tiles/1280x640__KROLL_OHHELLO.png",
-                  "type":"png",
-                  "aspectRatio":"2:1"
-               },
-               {
-                  "url":"http://4.images.comedycentral.com/images/tve/_river_branded_tiles/1280x720__KROLL_OHHELLO.png",
-                  "type":"png",
-                  "aspectRatio":"16:9"
-               },
-               {
-                  "url":"http://2.images.comedycentral.com/images/tve/_river_branded_tiles/1280x1280__KROLL_OHHELLO_v1.png",
-                  "type":"png",
-                  "aspectRatio":"1:1"
-               },
-               {
-                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/kroll_show/tve_series_page/TVE_Hub_ShowImage_Kroll_Final_Season.jpg?host=comedycentral",
-                  "aspectRatio":"1:1"
-               },
-               {
-                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/kroll_show/cc_tvsched_showheader_kroll.png?host=comedycentral"
-               }
-            ],
-            "platforms":[
-               {
-                  "platform":"ios",
-                  "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                  "contentLink":"ccnetworkapp://series/d4581379-0309-4d46-878c-f2a204ed0253?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                  "authRequired":"false",
-                  "startDate":"2015-03-23T10:58:00Z",
-                  "endDate":"9999-12-30T19:00:00Z"
-               },
-               {
-                  "platform":"android",
-                  "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                  "contentLink":"ccnetworkapp://series/d4581379-0309-4d46-878c-f2a204ed0253?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
-                  "authRequired":"false",
-                  "startDate":"2015-03-23T10:58:00Z",
-                  "endDate":"9999-12-30T19:00:00Z"
-               }
-            ],
-            "links":[
-               {
-                  "rel":"seasons",
-                  "href":"https://api.viacom.com/contents/v2/shows/d4581379-0309-4d46-878c-f2a204ed0253/seasons"
-               },
-               {
-                  "rel":"episodes",
-                  "href":"https://api.viacom.com/contents/v2/shows/d4581379-0309-4d46-878c-f2a204ed0253/episodes"
-               },
-               {
-                  "rel":"brand",
-                  "href":"https://api.viacom.com/contents/v2/brands/cc"
-               }
-            ],
-            "brand":{
-               "id":"cc",
-               "name":"comedy central",
-               "url":"http://www.cc.com"
-            }
-         }
-        ]
-        }
-
-
-+ Response 404
-
-+ Response 500
 
 ## Featured Episodes for a Brand [/contents/v2/brands/{brandId}/episodes/featured?apiKey={apiKey}&limit={limit}&offset={offset}]
 
@@ -1099,70 +1496,6 @@ Get Episode by ID:
 
 + Response 500
 
-## Show by ID [/contents/v2/shows/{showId}?apiKey={apiKey}]
-
-Get Detail of a Show:
-
-+ Parameters
-    + showId (string, required) - Show ID
-    + apiKey (string, required) - API Key
-    
-### Get detail of a Show by ID [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "show": {
-                "id": "12345",
-                "title": "show title",
-                "description": "desc for a show",
-                "episodeCount": 2,
-                "genre": "comedy",
-                "etc": "etc"
-            }
-        }
-        
-+ Response 404 
-
-+ Response 500
-
-## Shows Collection [/contents/v2/shows?apiKey={apiKey}&offset={offset}&limit={limit}]
-
-List all shows:
-
-+ Parameters
-    + apiKey (string, required) - API Key
-    + offset: `0` (number, optional) - index into collection to start for this request 
-        + Default: `0`
-    + limit: `20` (number, optional) - max number of items to return for this call
-        + Default: `20`
-        
-
-### Get a list of shows [GET]
-
-+ Response 200 (application/json)
-
-                {
-                    [
-                        {
-                            "title": "Archer",
-                            "id": "12345-abcde-09876-mnopq",
-                            "platforms": [
-                                {   
-                                    "platform": "ios",
-                                    "downloadLink": "itune://comedycentral/12345-abcde-09876-mnopq",
-                                    "contentLink": "ccnetwork://12345-abcde-09876-mnopq",
-                                },
-                                {
-                                    "platform": "android",
-                                    "downloadLink": "playstore://comedycentral/12345-abcde-09876-mnopq",
-                                    "contentLink": "ccnetwork://12345-abcde-09876-mnopq"
-                                }
-                            ]
-                        }
-                    ]
-                    
-                }
                 
 ## Episodes for a Show & Season [/contents/v2/shows/{showId}/seasons/{seasonId}/episodes?apiKey={apiKey}&offset={offset}&limit={limit}]
 
@@ -1245,4 +1578,53 @@ List all Shows on a Platform
                     }
                 }
                 
+## Seasons by Show For a Brand [/contents/v2/brands/{brandId}/shows/{showId}/seasons?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+Get Seasons by Show Id for a Brand
+
++ Parameters
+    + brandId: cc (string, required) - brand ID
+    + showId (string, required) - show ID
+    + apiKey (string, required) - apiKey
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Get Seasons by Show Id [GET]
+
++ Response 200 (application/json)
+
+        {
+        "response":{
+            "seasons":[
+                {
+                    "mgid":"mgid:arc:season:comedycentral.com:6c373b56-966a-40d4-8837-9e865fa669f3",
+                    "id":"6c373b56-966a-40d4-8837-9e865fa669f3",
+                    "title":"5: Archer",
+                    "ratingType":"TVPG",
+                    "rating":"TV-MA",
+                    "seasonNumber":"5",
+                    "showTitle":"Archer",
+                    "links":[
+               {
+                    "rel":"show",
+                    "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4"
+               },
+               {
+                    "rel":"episodes",
+                    "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4/seasons/6c373b56-966a-40d4-8837-9e865fa669f3/episodes"
+               },
+               {
+                    "rel":"brand",
+                    "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+            ]
+        }
+        }
+
++ Response 500
+
++ Response 404
 
