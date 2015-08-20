@@ -1,20 +1,1130 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# Revision 2
+# Data API V2
 
-This resource does not have any attributes. Instead it offers the initial
-API affordances in the form of the links in the JSON body.
+## Episodes by Show & Season for a Brand [/contents/v2/brands/{brandId}/shows/{showId}/seasons/{seasonId}/episodes?apiKey={apiKey}&offset={offset}&limit={limit}]
 
-It is recommend to follow the “url” link values,
-[Link](https://tools.ietf.org/html/rfc5988) or Location headers where
-applicable to retrieve resources. Instead of constructing your own URLs,
-to keep your client decoupled from implementation details.
+Get Episodes by Show ID and Season ID for a Brand
 
-## Retrieve the Entry Point [GET]
++ Parameters
+    + brandId: cc (string, required) - brand ID
+    + showId (string, required) - show ID
+    + seasonId (string, required) - season ID
+    + apiKey (string, required) - apiKey
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Get Episodes by Show Id and Season Id [GET]
 
 + Response 200 (application/json)
 
         {
-            "questions_url": "/questions"
+            "response":{
+                "episodes":[
+                {
+                    "mgid":"mgid:arc:episode:spiketv.com:1b8341e8-fd6e-4a07-aad5-b62b39f48ac5",
+                    "id":"1b8341e8-fd6e-4a07-aad5-b62b39f48ac5",
+                    "title":"FL(EX) Wives",
+                    "episodeNumber":"321",
+                    "description":"A bodybuilder comes to Big Gus hoping to lift his spirits and get his wife off his back, while Jasmine helps a father give the boot to some bad ink.",
+                    "shortDescription":"A bodybuilder comes to Big Gus hoping to lift his spirits and get his wife off his back.",
+                    "ratingType":"TVPG",
+                    "rating":"TV-14",
+                    "duration":1230,
+                    "genre":"action",
+                    "originalAirDate":"2015-08-04T00:00:00Z",
+                    "images":[
+                        {
+                            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:spike-assets:/images/shows/tattoo-nightmares/HDTNI321A_act3_1280x720_3500_h32-1.png?host=spike",
+                            "aspectRatio":"16:9"
+                        }
+                    ],
+                    "season":{
+                        "id":"1eff672a-9ab2-4e3d-bd90-5ad1a3470125",
+                        "seasonNumber":"3",
+                        "title":"Season 3"
+                    },
+                    "show":{
+                        "id":"af208864-c44b-4cb1-88fc-b136da6afcd2",
+                        "title":"Tattoo Nightmares"
+                    },
+                    "platforms":[
+                        {
+                            "platform":"ios",
+                            "downloadLink":"https://itunes.apple.com/us/app/spike-tv/id906788127?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "contentLink":"spikenetworkapp://episode/1b8341e8-fd6e-4a07-aad5-b62b39f48ac5?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"true",
+                            "startDate":"2015-08-05T05:00:00Z",
+                            "endDate":"2015-09-20T00:00:00Z"
+                        }
+                    ],
+                    "links":[
+                        {
+                            "rel":"show",
+                            "href":"https://api.viacom.com/contents/v2/shows/af208864-c44b-4cb1-88fc-b136da6afcd2"
+                        },
+                        {
+                            "rel":"brand",
+                            "href":"https://api.viacom.com/contents/v2/brands/spike"
+                        }
+                    ],
+                    "brand":{
+                        "id":"spike",
+                        "name":"spike",
+                        "url":"http://www.spike.com"
+                    }
+                }
+                ]
+            }
         }
+
++ Response 404 
+
++ Response 500
+
+## Episodes by Season for a Brand [/contents/v2/brands/{brandId}/seasons/{seasonId}/episodes?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+Get Episodes by Season ID for a Brand
+
++ Parameters
+    + brandId: cc (string, required) - brand ID
+    + seasonId (string, required) - season ID
+    + apiKey (string, required) - apiKey
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Get Episodes by Season Id [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "episodes":[
+                {
+                    "mgid":"mgid:arc:episode:spiketv.com:1b8341e8-fd6e-4a07-aad5-b62b39f48ac5",
+                    "id":"1b8341e8-fd6e-4a07-aad5-b62b39f48ac5",
+                    "title":"FL(EX) Wives",
+                    "episodeNumber":"321",
+                    "description":"A bodybuilder comes to Big Gus hoping to lift his spirits and get his wife off his back, while Jasmine helps a father give the boot to some bad ink.",
+                    "shortDescription":"A bodybuilder comes to Big Gus hoping to lift his spirits and get his wife off his back.",
+                    "ratingType":"TVPG",
+                    "rating":"TV-14",
+                    "duration":1230,
+                    "genre":"action",
+                    "originalAirDate":"2015-08-04T00:00:00Z",
+                    "images":[
+                        {
+                            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:spike-assets:/images/shows/tattoo-nightmares/HDTNI321A_act3_1280x720_3500_h32-1.png?host=spike",
+                            "aspectRatio":"16:9"
+                        }
+                    ],
+                    "season":{
+                        "id":"1eff672a-9ab2-4e3d-bd90-5ad1a3470125",
+                        "seasonNumber":"3",
+                        "title":"Season 3"
+                    },
+                    "show":{
+                        "id":"af208864-c44b-4cb1-88fc-b136da6afcd2",
+                        "title":"Tattoo Nightmares"
+                    },
+                    "platforms":[
+                        {
+                            "platform":"ios",
+                            "downloadLink":"https://itunes.apple.com/us/app/spike-tv/id906788127?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "contentLink":"spikenetworkapp://episode/1b8341e8-fd6e-4a07-aad5-b62b39f48ac5?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"true",
+                            "startDate":"2015-08-05T05:00:00Z",
+                            "endDate":"2015-09-20T00:00:00Z"
+                        }
+                    ],
+                    "links":[
+                        {
+                            "rel":"show",
+                            "href":"https://api.viacom.com/contents/v2/shows/af208864-c44b-4cb1-88fc-b136da6afcd2"
+                        },
+                        {
+                            "rel":"brand",
+                            "href":"https://api.viacom.com/contents/v2/brands/spike"
+                        }
+                    ],
+                    "brand":{
+                        "id":"spike",
+                        "name":"spike",
+                        "url":"http://www.spike.com"
+                    }
+                }
+                ]
+            }
+        }
+
++ Response 404 
+
++ Response 500
+
+## Seasons by Show For a Brand [/contents/v2/brands/{brandId}/shows/{showId}/seasons?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+Get Seasons by Show Id for a Brand
+
++ Parameters
+    + brandId: cc (string, required) - brand ID
+    + showId (string, required) - show ID
+    + apiKey (string, required) - apiKey
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Get Seasons by Show Id [GET]
+
++ Response 200 (application/json)
+
+        {
+        "response":{
+            "seasons":[
+                {
+                    "mgid":"mgid:arc:season:comedycentral.com:6c373b56-966a-40d4-8837-9e865fa669f3",
+                    "id":"6c373b56-966a-40d4-8837-9e865fa669f3",
+                    "title":"5: Archer",
+                    "ratingType":"TVPG",
+                    "rating":"TV-MA",
+                    "seasonNumber":"5",
+                    "showTitle":"Archer",
+                    "links":[
+               {
+                    "rel":"show",
+                    "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4"
+               },
+               {
+                    "rel":"episodes",
+                    "href":"https://api.viacom.com/contents/v2/shows/c9be3b7d-ccea-4b54-a680-51de7bfa25f4/seasons/6c373b56-966a-40d4-8837-9e865fa669f3/episodes"
+               },
+               {
+                    "rel":"brand",
+                    "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+            ]
+        }
+        }
+
++ Response 500
+
++ Response 404
+
+## Delta Shows By Brand [/contents/v2/brands/{brandId}/shows/delta?apiKey={apiKey}&date={date}&offset={offset}&limit={limit}]
+
+Get Shows by Brand from a specific timeframe
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    + date: 2015-05-17 (date, required) - date
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Delta Show by Brand [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+            "shows":[
+              {
+                "mgid":"mgid:arc:series:comedycentral.com:cee4bc8f-d114-4cad-803e-fa93959911ef",
+                "id":"cee4bc8f-d114-4cad-803e-fa93959911ef",
+                "title":"Bridget Everett: Gynecological Wonder",
+                "ratingType":"TVPG",
+                "rating":"TV-MA",
+                "episodeCount":0,
+                "seasonCount":1,
+                "genre":"comedy",
+                "images":[
+                  {
+                    "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/bridget_everett_gynecological_wonder/Everett_Gynecological_Wonder_HUB_APP_1280x1280.jpg?host=comedycentral",
+                    "aspectRatio":"1:1"
+                  }
+                ],
+                "platforms":[
+                 {
+                   "platform":"ios",
+                   "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
+                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-07-12T06:00:00Z",
+                   "endDate":"2015-08-10T06:00:00Z"
+                 },
+                 {
+                   "platform":"android",
+                   "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
+                   "contentLink":"ccnetworkapp://series/cee4bc8f-d114-4cad-803e-fa93959911ef?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-07-12T06:00:00Z",
+                   "endDate":"2015-08-10T06:00:00Z"
+                 }
+                ],
+                "links":[
+                  {
+                    "rel":"seasons",
+                    "href":"https://api.viacom.com/contents/v2/shows/cee4bc8f-d114-4cad-803e-fa93959911ef/seasons"
+                  },
+                  {
+                    "rel":"brand",
+                    "href":"https://api.viacom.com/contents/v2/brands/cc"
+                  }
+                ],
+                "brand":{
+                  "id":"cc",
+                  "name":"comedy central",
+                  "url":"http://www.cc.com"
+                }
+              }
+         ]
+        }
+        
++ Response 500
+
++ Response 404
+
+## Delta Episodes By Brand [/contents/v2/brands/{brandId}/episodes/delta?apiKey={apiKey}&date={date}&offset={offset}&limit={limit}]
+
+Get Episodes by Brand from a specific timeframe
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    + date: 2015-05-17 (date, required) - date
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+    
+
+### Delta Episodes by Brand [GET]
+
++ Response 200 (application/json)
+
+        {
+          "response":{
+            "episodes":[
+            {
+              "mgid":"mgid:arc:episode:comedycentral.com:017a911c-9635-435d-a5ff-f6052945fc71",
+              "id":"017a911c-9635-435d-a5ff-f6052945fc71",
+              "title":"The One Where Hannibal Looks Like \"Miami Vice\"",
+              "episodeNumber":"205",
+              "description":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
+              "shortDescription":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
+              "ratingType":"TVPG",
+              "rating":"TV-MA",
+              "duration":1245,
+              "genre":"comedy",
+              "originalAirDate":"2015-08-18T00:30:00Z",
+              "franchise":{
+                "id":"d4a893db-9ede-4fd7-84c8-5e314297b13b",
+                "title":"CC:Stand-Up"
+              },
+              "images":[
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/meltdown/season_02/205/meltdown_02_005_hannibal_01.jpg?host=comedycentral",
+                  "aspectRatio":"16:9"
+               }
+              ],
+              "season":{
+                  "id":"981fe217-a8b6-4782-a746-c4d411b60428",
+                  "seasonNumber":"2",
+                  "title":"2: The Meltdown with Jonah and Kumail"
+              },
+              "show":{
+                 "id":"2345e03e-2bfc-45e1-979b-2c30bc439044",
+                 "title":"The Meltdown with Jonah and Kumail"
+              },
+              "platforms":[
+                 {
+                   "platform":"ios",
+                   "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
+                   "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-08-05T00:00:00Z",
+                   "endDate":"2015-11-16T06:00:00Z"
+                 },
+                 {
+                   "platform":"android",
+                   "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
+                   "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                   "authRequired":"true",
+                   "startDate":"2015-08-05T00:00:00Z",
+                   "endDate":"2015-11-16T06:00:00Z"
+                 }
+              ],
+              "links":[
+               {
+                  "rel":"show",
+                  "href":"https://api.viacom.com/contents/v2/shows/2345e03e-2bfc-45e1-979b-2c30bc439044"
+               },
+               {
+                  "rel":"brand",
+                  "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+              ],
+              "brand":{
+                 "id":"cc",
+                 "name":"comedy central",
+                 "url":"http://www.cc.com"
+              }
+            }
+            ]
+        }
+        
++ Response 500
+
++ Response 404
+
+## Random Shows [/contents/v2/brands/{brandId}/shows/random_shows?apiKey={apiKey}]
+
+Get random shows for a brand
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    
+    
+
+### Get random shows for a brand [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+              "episodes":[
+                {
+                  "mgid":"mgid:arc:episode:comedycentral.com:017a911c-9635-435d-a5ff-f6052945fc71",
+                  "id":"017a911c-9635-435d-a5ff-f6052945fc71",
+                  "title":"The One Where Hannibal Looks Like \"Miami Vice\"",
+                  "episodeNumber":"205",
+                  "description":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
+                  "shortDescription":"Hannibal Buress, Kate Berlant and Paul Scheer perform, and Jonah Ray and Kumail Nanjiani reminisce about their many failed romances.",
+                  "ratingType":"TVPG",
+                  "rating":"TV-MA",
+                  "duration":1245,
+                  "genre":"comedy",
+                  "originalAirDate":"2015-08-18T00:30:00Z",
+                  "franchise":{
+                    "id":"d4a893db-9ede-4fd7-84c8-5e314297b13b",
+                    "title":"CC:Stand-Up"
+                  },
+                  "images":[
+                    {
+                      "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/meltdown/season_02/205/meltdown_02_005_hannibal_01.jpg?host=comedycentral",
+                      "aspectRatio":"16:9"
+                    }
+                  ],
+                  "season":{
+                    "id":"981fe217-a8b6-4782-a746-c4d411b60428",
+                    "seasonNumber":"2",
+                    "title":"2: The Meltdown with Jonah and Kumail"
+                  },
+                  "show":{
+                    "id":"2345e03e-2bfc-45e1-979b-2c30bc439044",
+                    "title":"The Meltdown with Jonah and Kumail"
+                  },
+                  "platforms":[
+                    {
+                      "platform":"ios",
+                      "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8",
+                      "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                      "authRequired":"true",
+                      "startDate":"2015-08-05T00:00:00Z",
+                      "endDate":"2015-11-16T06:00:00Z"
+                    },
+                    {
+                      "platform":"android",
+                      "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral",
+                      "contentLink":"ccnetworkapp://episode/017a911c-9635-435d-a5ff-f6052945fc71?xrs=vdapi_NA_072d8cf52e6d6b26e1e28df068d5c00e",
+                      "authRequired":"true",
+                      "startDate":"2015-08-05T00:00:00Z",
+                      "endDate":"2015-11-16T06:00:00Z"
+                    }
+                  ],
+                  "links":[
+                    {
+                      "rel":"show",
+                      "href":"https://api.viacom.com/contents/v2/shows/2345e03e-2bfc-45e1-979b-2c30bc439044"
+                    },
+                    {    
+                      "rel":"brand",
+                      "href":"https://api.viacom.com/contents/v2/brands/cc"
+                    }
+                  ],
+                  "brand":{
+                     "id":"cc",
+                     "name":"comedy central",
+                     "url":"http://www.cc.com"
+                  }
+                }
+              ]
+            }
+        }
+        
++ Response 500
+
++ Response 404
+
+## Search by Shows for a Brand [/contents/v2/brands/{brandId}/shows/search?apiKey={apiKey}&key={key}&offset={offset}&limit={limit}]
+
+Perform search in Shows title by some key value and return list of shows.
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + key: a (string, required) - key value which is used for search
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+
+### Search by Shows [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "series":[
+                    {
+                        "mgid":"mgid:arc:series:comedycentral.com:21edc17d-eb12-4400-adcb-7d00d6c69d10",
+                        "id":"21edc17d-eb12-4400-adcb-7d00d6c69d10",
+                        "title":"Questionable Science",
+                        "description":"Join Professor Rich and his Unfocus Group as they brainstorm, hit the streets and interview leading experts to find the answers to some of life's dumbest hypothetical questions.",
+                        "ratingType":"TVPG",
+                        "rating":"TV-MA",
+                        "episodeCount":0,
+                        "seasonCount":1,
+                        "genre":"comedy",
+                        "franchise":{
+                            "id":"ad5a6411-c39e-498d-a60b-cd6d78beaebd",
+                            "title":"Not For TV"
+                        },
+                        "images":[
+                        {
+                            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/questionable_science/qs_hub_1280x1280.jpg?host=comedycentral",
+                            "aspectRatio":"1:1"
+                        }
+                    ],
+                    "platforms":[
+                        {
+                            "platform":"ios",
+                            "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "contentLink":"ccnetworkapp://series/21edc17d-eb12-4400-adcb-7d00d6c69d10?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"false",
+                            "startDate":"2015-03-23T10:58:00Z",
+                            "endDate":"9999-12-30T19:00:00Z"
+                        },
+                        {
+                            "platform":"android",
+                            "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "contentLink":"ccnetworkapp://series/21edc17d-eb12-4400-adcb-7d00d6c69d10?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"false",
+                            "startDate":"2015-03-23T10:58:00Z",
+                            "endDate":"9999-12-30T19:00:00Z"
+                        },
+                        {
+                            "platform":"roku",
+                            "contentLink":"entity=series&mgid=mgid:arc:series:comedycentral.com:21edc17d-eb12-4400-adcb-7d00d6c69d10&autoplay=false&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"false",
+                            "startDate":"2015-03-23T10:58:00Z",
+                            "endDate":"9999-12-30T19:00:00Z"
+                        }
+                    ],
+                    "links":[
+                        {
+                            "rel":"seasons",
+                            "href":"https://api.viacom.com/contents/shows/21edc17d-eb12-4400-adcb-7d00d6c69d10/seasons"
+                        },
+                        {
+                             "rel":"brand",
+                            "href":"https://api.viacom.com/contents/brands/cc"
+                        }        
+                    ],
+                    "brand":{
+                      "id":"cc",
+                      "name":"comedy central",
+                      "url":"http://www.cc.com"
+                    }
+                }
+              ]
+          }
+          
+## Search by Episodes for a Brand [/contents/v2/brands/{brandId}/episodes/search?apiKey={apiKey}&key={key}&offset={offset}&limit={limit}]
+
+Performs search in Episodes title by some key value and returns list of shows.
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + key: a (string, required) - key value which is used for search
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+
+### Search by Episode [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "episodes":[
+                {
+                    "mgid":"mgid:arc:episode:nick.com:eb9c5d18-13df-11e5-b2d8-0026b9414f30",
+                    "id":"eb9c5d18-13df-11e5-b2d8-0026b9414f30",
+                    "title":"Pig Goat Banana Cricket: \"The Chronicles of Cutesachusetts\"",
+                    "episodeNumber":"104",
+                    "description":"Pig cleans the toilet and is sucked into another world. Goat struggles to fix a hole in the roof. Banana is too lazy to simply put a jar of peanut butter away. Cricket supes up a vacuum that sucks everyone into another world.",
+                    "shortDescription":"The Chronicles of Cutesachusetts: Pig cleans the toilet and is sucked into another world. Goat struggles to fix a hole in the roof. Banana is too lazy to simply put a jar of peanut butter away. Cricket supes up a vacuum.",
+                    "ratingType":"TVPG",
+                    "rating":"TV-Y7",
+                    "duration":1351,
+                    "genre":"kids",
+                    "originalAirDate":"2015-08-01T00:00:00Z",
+                    "images":[
+                        {
+                            "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:kids-assets:/nick/video/images/pig-goat-banana-cricket/pig-goat-banana-cricket-full-episode-thumb-16x9.jpg?host=nick.com",
+                            "type":"Thumbnail",
+                            "aspectRatio":"16:9"
+                        }
+                    ],
+                    "season":{
+                        "id":"fae5626e-29e8-11e5-b90b-0026b9414f30",
+                        "seasonNumber":"1",
+                        "title":":Season 1"
+                    },
+                    "show":{
+                        "id":"63764019-1212-4620-baa1-3e300118a299",
+                        "title":"Pig Goat Banana Cricket"
+                    },
+                    "platforms":[
+                        {
+                            "platform":"roku",
+                            "contentLink":"entity=episode&mgid=mgid:arc:episode:nick.com:eb9c5d18-13df-11e5-b2d8-0026b9414f30&autoplay=true&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                            "authRequired":"false",
+                            "startDate":"2015-08-02T03:00:00Z",
+                            "endDate":"2015-08-31T02:59:59Z"
+                        }
+                    ],
+                    "links":[
+                        {        
+                            "rel":"show",
+                            "href":"https://api.viacom.com/contents/v2/shows/63764019-1212-4620-baa1-3e300118a299"
+                        },
+                        {
+                            "rel":"brand",
+                            "href":"https://api.viacom.com/contents/v2/brands/nick"
+                        }
+                    ],
+                    "brand":{
+                        "id":"nick",
+                        "name":"nick",
+                        "url":"http://www.nick.com"
+                    }
+                }
+              ]
+          }
+        }
+        
++ Response 404
+
++ Response 500
+
+        
+## Featured Shows for a Brand [/contents/v2/brands/{brandId}/shows/featured?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+Returns List of featured shows for a brand.
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+
+### Get featured shows by Brand ID [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "series":[
+                {
+            "mgid":"mgid:arc:series:comedycentral.com:d4581379-0309-4d46-878c-f2a204ed0253",
+            "id":"d4581379-0309-4d46-878c-f2a204ed0253",
+            "title":"Kroll Show",
+            "description":"With unforgettable recurring characters like Bobby Bottleservice, the PubLIZity Girls, Ref Jeff, C-Czar and more, Kroll Show skewers our television-obsessed culture and the rabid fan base it breeds. More than just a collection of sketches, it's Nick Kroll's one-of-a-kind take on pop culture and the meaning of celebrity.",
+            "ratingType":"TV-PG",
+            "rating":"TV-14",
+            "episodeCount":1,
+            "seasonCount":3,
+            "genre":"comedy",
+            "images":[
+               {
+                  "url":"http://1.images.comedycentral.com/images/tve/_river_branded_tiles/1080x720__KROLL_OHHELLO.png",
+                  "type":"png",
+                  "aspectRatio":"3:2"
+               },
+               {
+                  "url":"http://2.images.comedycentral.com/images/tve/_river_branded_tiles/1280x640__KROLL_OHHELLO.png",
+                  "type":"png",
+                  "aspectRatio":"2:1"
+               },
+               {
+                  "url":"http://4.images.comedycentral.com/images/tve/_river_branded_tiles/1280x720__KROLL_OHHELLO.png",
+                  "type":"png",
+                  "aspectRatio":"16:9"
+               },
+               {
+                  "url":"http://2.images.comedycentral.com/images/tve/_river_branded_tiles/1280x1280__KROLL_OHHELLO_v1.png",
+                  "type":"png",
+                  "aspectRatio":"1:1"
+               },
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/tve/kroll_show/tve_series_page/TVE_Hub_ShowImage_Kroll_Final_Season.jpg?host=comedycentral",
+                  "aspectRatio":"1:1"
+               },
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/kroll_show/cc_tvsched_showheader_kroll.png?host=comedycentral"
+               }
+            ],
+            "platforms":[
+               {
+                  "platform":"ios",
+                  "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "contentLink":"ccnetworkapp://series/d4581379-0309-4d46-878c-f2a204ed0253?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               },
+               {
+                  "platform":"android",
+                  "downloadLink":"https://play.google.com/store/apps/details?id=com.vmn.android.comedycentral&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "contentLink":"ccnetworkapp://series/d4581379-0309-4d46-878c-f2a204ed0253?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "authRequired":"false",
+                  "startDate":"2015-03-23T10:58:00Z",
+                  "endDate":"9999-12-30T19:00:00Z"
+               }
+            ],
+            "links":[
+               {
+                  "rel":"seasons",
+                  "href":"https://api.viacom.com/contents/v2/shows/d4581379-0309-4d46-878c-f2a204ed0253/seasons"
+               },
+               {
+                  "rel":"episodes",
+                  "href":"https://api.viacom.com/contents/v2/shows/d4581379-0309-4d46-878c-f2a204ed0253/episodes"
+               },
+               {
+                  "rel":"brand",
+                  "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+            ],
+            "brand":{
+               "id":"cc",
+               "name":"comedy central",
+               "url":"http://www.cc.com"
+            }
+         }
+        ]
+        }
+
+
++ Response 404
+
++ Response 500
+
+## Featured Episodes for a Brand [/contents/v2/brands/{brandId}/episodes/featured?apiKey={apiKey}&limit={limit}&offset={offset}]
+
+Returns List of featured episodes for a brand.
+
++ Parameters
+    + brandId (string, required) - brand ID
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - offset into collection to start
+        + Default: `0`
+    + limit: `20` (number, optional) - max number to return for each request
+        + Default: `20`
+
+### Get featured episodes by Brand ID [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "episodes":[
+        {
+            "mgid":"mgid:arc:episode:comedycentral.com:364a492c-d5c8-41fa-8dd7-9582aacce74d",
+            "id":"364a492c-d5c8-41fa-8dd7-9582aacce74d",
+            "title":"NEW ANOTHER PERIOD",
+            "episodeNumber":"107",
+            "description":"Lillian orchestrates her own kidnapping in a ploy to get press attention, and Blanche and Peepers spend the day as members of the upper class.",
+            "shortDescription":"Lillian orchestrates her own kidnapping in a ploy to get press attention, and Blanche and Peepers spend the day as members of the upper class.",
+            "ratingType":"TV-PG",
+            "rating":"TV-14",
+            "duration":1275,
+            "genre":"comedy",
+            "originalAirDate":"2015-08-04T22:30:00Z",
+            "images":[
+               {
+                  "url":"http://4.images.comedycentral.com/images/tve/_featured_assets/AP_Featured_Phone_APP_1280x720.jpg",
+                  "type":"jpg",
+                  "aspectRatio":"16:9"
+               },
+               {
+                  "url":"http://3.images.comedycentral.com/images/tve/_featured_assets/AP_Featured_Phone_APP_1280x640.jpg",
+                  "type":"jpg",
+                  "aspectRatio":"2:1"
+               },
+               {
+                  "url":"http://3.images.comedycentral.com/images/tve/_featured_assets/AP_Featured_Phone_APP_1080x720.jpg",
+                  "type":"jpg",
+                  "aspectRatio":"3:2"
+               },
+               {
+                  "url":"http://1.images.comedycentral.com/images/tve/_featured_assets/AP_Featured_Phone_APP_1280x1280.jpg",
+                  "type":"jpg",
+                  "aspectRatio":"1:1"
+               },
+               {
+                  "url":"http://3.images.comedycentral.com/images/tve/_featured_assets/AP_Featured_Tablet_APP_770x1024.png",
+                  "type":"png",
+                  "aspectRatio":"3:4"
+               },
+               {
+                  "url":"http://1.images.comedycentral.com/images/tve/_featured_assets/AP_Featured_XBox_APP_848x1280.jpg",
+                  "type":"jpg",
+                  "aspectRatio":"4:6"
+               },
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/Another_Period/Video_Thumbnails/season_1/107/anotherperiod_107_episode_thumbnail.jpg?host=comedycentral",
+                  "aspectRatio":"16:9"
+               }
+            ],
+            "season":{
+               "id":"8ccf171e-91c2-4e91-8007-64cdec323a45",
+               "seasonNumber":"1",
+               "title":"1: Another Period"
+            },
+            "show":{
+               "id":"ed0a66ef-1b0f-4ec4-ae39-386b2101d850",
+               "title":"Another Period"
+            },
+            "platforms":[
+
+            ],
+            "links":[
+               {
+                  "rel":"show",
+                  "href":"https://api.viacom.com/contents/v2/shows/ed0a66ef-1b0f-4ec4-ae39-386b2101d850"
+               },
+               {
+                  "rel":"brand",
+                  "href":"https://api.viacom.com/contents/v2/brands/cc"
+               }
+            ],
+            "brand":{
+               "id":"cc",
+               "name":"comedy central",
+               "url":"http://www.cc.com"
+            }
+          }
+         ]
+        }
+
+
++ Response 404
+
++ Response 500
+
+
+## Episodes Collection [/contents/v2/episodes?apiKey={apiKey}&offset={offset}&limit={limit}] 
+
+Pulls list of Episodes
+
++ Parameters
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - index into collection to start for this request 
+        + Default: `0`
+    + limit: `20` (number, optional) - max number of items to return for this call
+        + Default: `20`
+        
+
+### Get a list of episodes [GET]
+
++ Response 200 (application/json)
+
+        {
+            "response":{
+                "episodes":[
+         {
+            "mgid":"mgid:arc:episode:comedycentral.com:1d983a71-01c0-45e1-9dff-2a049e046e0c",
+            "id":"1d983a71-01c0-45e1-9dff-2a049e046e0c",
+            "title":"August 5, 2015 - Louis C.K.",
+            "episodeNumber":"20141",
+            "description":"In his penultimate show, Jon examines his legacy of eviscerating the opposition, reflects on his more noteworthy TV moments and discusses returning to stand-up with Louis C.K.",
+            "shortDescription":"In his penultimate show, Jon examines his legacy of eviscerating the opposition, reflects on his more noteworthy TV moments and discusses returning to stand-up with Louis C.K.",
+            "ratingType":"TVPG",
+            "rating":"TV-14",
+            "duration":1289,
+            "genre":"comedy",
+            "originalAirDate":"2015-08-05T23:00:00Z",
+            "images":[
+               {
+                  "url":"http://mtv.mtvnimages.com/uri/mgid:file:gsp:entertainment-assets:/cc/images/shows/tds/videos/season_20/20141/ds_20_141.jpg?host=comedycentral",
+                  "aspectRatio":"16:9"
+               }
+            ],
+            "people":[
+               {
+                  "id":"10c265d2-4bd6-4772-8dcf-d0eade21d112",
+                  "name":"Jon Stewart",
+                  "role":"Cast Member"
+               }
+            ],
+            "season":{
+               "id":"4de67ebb-f136-45d2-a2ca-05c38962b24d",
+               "seasonNumber":"20",
+               "title":"20: The Daily Show with Jon Stewart"
+            },
+            "show":{
+               "id":"2796e828-ecfd-11e0-aca6-0026b9414f30",
+               "title":"The Daily Show"
+            },
+            "platforms":[
+               {
+                  "platform":"ios",
+                  "downloadLink":"https://itunes.apple.com/us/app/comedy-central/id799551807?mt=8&xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "contentLink":"ccnetworkapp://episode/1d983a71-01c0-45e1-9dff-2a049e046e0c?xrs=vdapi_NA_de5fdd92adc9fb8d8045e5f95c640252",
+                  "authRequired":"false",
+                  "startDate":"2015-08-06T03:40:00Z",
+                  "endDate":"2015-09-07T06:00:00Z"
+               }
+            ],
+            "links":[
+               {
+                  "rel":"show",
+                  "href":"https://api.viacom.com/contents/v2/shows/2796e828-ecfd-11e0-aca6-0026b9414f30"
+               }
+            ],
+            "brand":{
+               "id":"cc",
+               "name":"comedy central",
+               "url":"http://www.cc.com"
+            }
+           }
+          ]
+         }
+        }
+        
++ Response 404
+
++ Response 500
+
+
+## Episode by ID [/contents/v2/episodes/{episodeId}?apiKey={apiKey}]
+
+Get Episode by ID:
+
++ Parameters
+    + episodeId (string, required) - Episode ID
+    + apiKey (string, required) - API Key
+  
+
+  
+### Get Detail for an Episode [GET]
+
++ Response 200 (application/json)
+
+        {
+            "mgid": "mgid:arc:episode:comedycentral.com:12345-abcde-09876-mnopq",
+            "id": "12345-abcde-09876-mnopq",
+            "title": "Archer, Ep1",
+            "episodeNumber": "1076",
+            "description": "Wealthy Californians refuse to conserve water, and Naomi Ekperigin, Joe Morton and Rory Albanese join Larry to discuss the lingering popularity of the Confederate flag.",
+            "shortDescription": "Wealthy Californians refuse to conserve water, and Naomi Ekperigin, Joe Morton and Rory Albanese join Larry to discuss the lingering popularity of the Confederate flag.",
+            "ratingType": "TVPG",
+            "rating": "TV-14",
+            "duration": "1289",
+            "genre": "comedy",
+            "originalAirDate": "2015-06-23T23:30:00Z",
+            "platforms": 
+            [
+                {   
+                    "platform": "ios",
+                    "downloadLink": "itune://comedycentral/12345-abcde-09876-mnopq",
+                    "contentLink": "ccnetwork://12345-abcde-09876-mnopq",
+                },
+                {
+                    "platform": "android",
+                    "downloadLink": "playstore://comedycentral/12345-abcde-09876-mnopq",
+                    "contentLink": "ccnetwork://12345-abcde-09876-mnopq"
+                }
+            ]
+        }
+        
++ Response 404 
+
++ Response 500
+
+## Show by ID [/contents/v2/shows/{showId}?apiKey={apiKey}]
+
+Get Detail of a Show:
+
++ Parameters
+    + showId (string, required) - Show ID
+    + apiKey (string, required) - API Key
+    
+### Get detail of a Show by ID [GET]
+
++ Response 200 (application/json)
+
+        {
+            "show": {
+                "id": "12345",
+                "title": "show title",
+                "description": "desc for a show",
+                "episodeCount": 2,
+                "genre": "comedy",
+                "etc": "etc"
+            }
+        }
+        
++ Response 404 
+
++ Response 500
+
+## Shows Collection [/contents/v2/shows?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+List all shows:
+
++ Parameters
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - index into collection to start for this request 
+        + Default: `0`
+    + limit: `20` (number, optional) - max number of items to return for this call
+        + Default: `20`
+        
+
+### Get a list of shows [GET]
+
++ Response 200 (application/json)
+
+                {
+                    [
+                        {
+                            "title": "Archer",
+                            "id": "12345-abcde-09876-mnopq",
+                            "platforms": [
+                                {   
+                                    "platform": "ios",
+                                    "downloadLink": "itune://comedycentral/12345-abcde-09876-mnopq",
+                                    "contentLink": "ccnetwork://12345-abcde-09876-mnopq",
+                                },
+                                {
+                                    "platform": "android",
+                                    "downloadLink": "playstore://comedycentral/12345-abcde-09876-mnopq",
+                                    "contentLink": "ccnetwork://12345-abcde-09876-mnopq"
+                                }
+                            ]
+                        }
+                    ]
+                    
+                }
+                
+## Episodes for a Show & Season [/contents/v2/shows/{showId}/seasons/{seasonId}/episodes?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+List all epsiodes for the specified show & season
+
++ Parameters
+    + showId: `12345-abcde-23456-mpqrs` (string, required) - show ID
+    + seasonId: `57913-xyz-bcde-12345` (string, required) - season ID
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - index into collection to start for this request 
+        + Default: `20`
+    + limit: `20` (number, optional) - max number of items to return for this call
+        + Default: `20`
+
+### Get a list of episodes for Show+Season [GET]
+
++ Response 404 (application/xml)
+
++ Response 500 (application/xml)
+
++ Response 200 (application/json)
+
+        {
+            response: {
+                episodes: [
+                    {
+                    },
+                    {
+                    },
+                    {
+                    }
+                ]
+            }
+        }
+                
+
+## Seasons for a Show [/contents/v2/shows/{showId}/seasons?apiKey={apiKey}&offset={offset}&limit={limit}]
+
+List all Shows on a Platform
+
++ Parameters
+    + showId: `12345-abcde-23456-mpqrs` (string, required) - show ID
+    + apiKey (string, required) - API Key
+    + offset: `0` (number, optional) - index into collection to start for this request 
+        + Default: `20`
+    + limit: `20` (number, optional) - max number of items to return for this call
+        + Default: `20`
+        
+### Get a list of seasons for a show [GET]
+
++ Response 404 (application/xml)
+
++ Response 500 (application/xml)
+
++ Response 200 (application/json)
+
+                {
+                    response: {
+                        seasons: [
+                          {
+                            id: "d6c508a5-96a3-4bd9-9873-7e4778350d8a",
+                            title: "1: Nick Swardson: Taste It",
+                            seasonNumber: "1",
+                            links: [
+                                {
+                                    rel: "shows",
+                                    href: "https://api.viacom.com/contents/v2/shows/57467442-2fd6-4873-966c-d75fd7f7b9b5"
+                                },
+                                {
+                                    rel: "episodes",
+                                    href: "https://api.viacom.com/contents/v2/shows/57467442-2fd6-4873-966c-d75fd7f7b9b5/seasons/d6c508a5-96a3-4bd9-9873-7e4778350d8a/episodes"
+                                }
+                            ]
+                          }
+                        ],
+                        offset: 0,
+                        limit: 20,
+                        page_count: 1,
+                        total_count: 1
+                    }
+                }
+                
+
